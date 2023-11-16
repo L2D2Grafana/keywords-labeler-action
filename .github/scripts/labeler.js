@@ -3,6 +3,8 @@ const github = require('@actions/github')
 const nlp = require('compromise')
 const _ = require('lodash')
 
+const token = core.getInput('repo-token', { required: true })
+
 async function run() {
   try {
     const issueTitle = github.context.payload.issue.title
@@ -13,7 +15,6 @@ async function run() {
       { keywords: ['PIR', 'pir', 'incident', 'Incident'], label: 'postmortem' }
     ]
 
-    const token = core.getInput('repo-token', { required: true })
     const octokit = github.getOctokit(token)
 
     let labelsToAdd = []
