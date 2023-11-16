@@ -13,9 +13,7 @@ async function run() {
       { keywords: ['PIR', 'pir', 'incident', 'Incident'], label: 'postmortem' }
     ]
 
-    const token = core.getInput('repo-token', { required: true })
-    core.info(`Get TOKEN: ${token}  ...`)
-    const octokit = github.getOctokit(token)
+    const octokit = github.getOctokit(process.env.REPO_TOKEN)
 
     let labelsToAdd = []
 
