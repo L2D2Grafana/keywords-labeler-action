@@ -10,8 +10,6 @@ async function run() {
     const issueNumber = github.context.payload.issue.number
     const issueLabels = github.context.payload.issue.labels
 
-    console.log('issueLabels', issueLabels)
-
     const keywordToLabelMap = [
       { keywords: ['PIR', 'pir', 'incident', 'Incident'], label: 'postmortem' },
       {
@@ -52,13 +50,13 @@ async function run() {
       }
     })
 
+    // remove any duplicate labels
     if (labelsToAdd.length > 0) {
       // loop through labelsToAdd and remove any that are already on the issue
       labelsToAdd = labelsToAdd.filter(
         label => !issueLabels.some(issueLabel => issueLabel.name === label)
       )
     }
-    console.log('labelsToAdd :>> ', labelsToAdd)
 
     if (labelsToAdd.length > 0) {
       await octokit.rest.issues.addLabels({
