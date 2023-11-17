@@ -10,7 +10,29 @@ async function run() {
     const issueNumber = github.context.payload.issue.number
 
     const keywordToLabelMap = [
-      { keywords: ['PIR', 'pir', 'incident', 'Incident'], label: 'postmortem' }
+      { keywords: ['PIR', 'pir', 'incident', 'Incident'], label: 'postmortem' },
+      {
+        keywords: [
+          'BackendSrv',
+          'Dashboard',
+          'Annotations',
+          'News panel',
+          'Text panel',
+          'Login',
+          'Playlists',
+          'Navigation',
+          'A11y',
+          'Legacy Graph panel',
+          'Theming',
+          'App notifications',
+          'grafana/ui components',
+          'Timepicker',
+          'Search FE',
+          'Command palette',
+          'Internationalization'
+        ],
+        label: 'oss-user-essentials'
+      }
     ]
 
     const octokit = github.getOctokit(process.env.REPO_TOKEN)
